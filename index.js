@@ -17,11 +17,13 @@ const profileCtrl = require('./controller/profilecontroller');
 const rankCtrl = require('./controller/rankcontroller');
 const punishmentCtrl = require('./controller/punishmentcontroller');
 const activePunishmentCtrl = require('./controller/activepunishmentctrl');
+const grantctrl = require('./controller/grantcontroller');
 
 express.use('/profiles', profileCtrl);
 express.use('/ranks', rankCtrl);
 express.use('/punishments', punishmentCtrl);
 express.use('/activePunishments', activePunishmentCtrl);
+express.use('/grants', grantctrl);
 
 express.listen(process.env.PORT, () => console.log(`Listening in port ${process.env.PORT}`))
 
