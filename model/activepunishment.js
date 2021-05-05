@@ -28,7 +28,12 @@ const scheme = new mongoose.Schema({
 
     reason: {
         type: String,
-        default: ''
+        default: ""
+    },
+
+    expire: {
+        type: Number,
+        default: 0
     },
 
     removedAt: {
