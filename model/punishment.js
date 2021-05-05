@@ -28,7 +28,7 @@ const scheme = new mongoose.Schema({
 
     reason: {
         type: String,
-        required: true
+        default: ''
     },
 
     removedAt: {

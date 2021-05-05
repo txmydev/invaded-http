@@ -37,9 +37,11 @@ app.get('/', async (req, res) => {
 
 async function create(req, res) {
     let newRank = await new rank(req.body)
-    newRank.save(error => {console.log(error);res.status(500).send({message: 'Internal error'}); })
-
-    res.status(201).send(newRank);
+    await newRank.save(error => {
+        if(error){
+            console.log(error);res.status(500).send({message: 'Internal error'});
+        }else res.status(201).send(newRank);
+    })
 }
 
 async function update(rankProvided, req, res) {

@@ -10,9 +10,6 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-    let grants = await Grant.find(req.body);
-    if(!grants.length)  return res.status(404).send({message: 'Not found.'});
-
     create(req, res);
 })
 
@@ -30,9 +27,13 @@ async function remove(grants, req, res) {
 
 async function create(req, res) {
     let grant = await new Grant(req.body)
-    grant.save(error => {console.log(error); res.status(500).send({message: 'Internal error'})})
 
-    res.status(201).send(grant);
+    await grant.save(error => {
+        if(error) res.status(500).send({message: 'Internal error'});
+        else res.status(201).send(grant);
+    })
+
+  //
 }
 
 module.exports = app;

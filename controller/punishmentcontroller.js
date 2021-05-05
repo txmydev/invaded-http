@@ -4,7 +4,7 @@ const punishment = require('../model/punishment');
 
 app.get('/', async (req, res) => {
     let punishments = await punishment.find(req.query);
-    if(!punishments.length) return res.status(204).send({message: 'No content'})
+    if (!punishments.length) return res.status(204).send({message: 'No content'})
 
     res.status(200).send(punishments);
 })
@@ -12,13 +12,13 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     let punishments = await punishment.find(req.body);
 
-    if(!punishments.length) create(req, res);
+    if (!punishments.length) create(req, res);
     else update(punishments[0], req, res);
 })
 
 app.delete('/', async (req, res) => {
     let punishments = await punishment.find(req.query);
-    if(!punishments.length) return res.status(404).send({message: 'Not found'});
+    if (!punishments.length) return res.status(404).send({message: 'Not found'});
 
     await remove(punishments, req, res);
 })
@@ -30,14 +30,21 @@ async function remove(punishments, req, res) {
 
 async function create(req, res) {
     let newPunishment = await new punishment(req.body)
-    newPunishment.save(error => {console.log(error); res.status(500).send({message: 'Internal error'})})
+    await newPunishment.save(error => {
+        if (error) {
+            console.log(error);
+            res.status(500).send({message: 'Internal error'})
+        } else res.status(201).send(newPunishment);
+    })
 
-    res.status(201).send(newPunishment);
 }
 
 async function update(oldPunishment, req, res) {
     let punishment = Object.assign(oldPunishment, req.body);
-    await punishment.save().catch(error => {console.log(error); res.status(500).send({message: 'Internal error'})})
+    await punishment.save().catch(error => {
+        console.log(error);
+        res.status(500).send({message: 'Internal error'})
+    })
     res.status(200).send(punishment);
 }
 

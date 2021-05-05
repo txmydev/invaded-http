@@ -5,12 +5,13 @@ const Profile = require('../model/profile');
 async function create(req, res) {
     let profile = await new Profile(req.body)
 
-    profile.save(error => {
-        res.status(500).send({message: 'Internal error'})
-        console.log(error);
+    await profile.save(error => {
+        if(error) {
+            res.status(500).send({message: 'Internal error'})
+            console.log(error);
+        }else res.status(201).send(profile);
     })
 
-    res.status(201).send(profile);
 }
 
 app.post('/', async (req, res) => {
