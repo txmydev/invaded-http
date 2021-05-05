@@ -29,8 +29,8 @@ async function remove(punishments, req, res) {
 }
 
 async function create(req, res) {
-    let newPunishment = await new punishment(req.body).save()
-        .catch(error => {console.log(error); res.status(500).send({message: 'Internal error'})})
+    let newPunishment = await new punishment(req.body)
+    newPunishment.save(error => {console.log(error); res.status(500).send({message: 'Internal error'})})
 
     res.status(201).send(newPunishment);
 }

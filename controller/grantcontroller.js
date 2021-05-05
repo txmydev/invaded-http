@@ -29,7 +29,9 @@ async function remove(grants, req, res) {
 }
 
 async function create(req, res) {
-    let grant = await new Grant(req.body).save().catch(error => {console.log(error); res.status(500).send({message: 'Internal error'})});
+    let grant = await new Grant(req.body)
+    grant.save(error => {console.log(error); res.status(500).send({message: 'Internal error'})})
+
     res.status(201).send(grant);
 }
 

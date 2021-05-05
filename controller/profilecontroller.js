@@ -3,11 +3,12 @@ const app = express();
 const Profile = require('../model/profile');
 
 async function create(req, res) {
-    let profile = await new Profile(req.body).save()
-        .catch(error => {
-            res.status(500).send({message: 'Internal error'})
-            console.log(error);
-        })
+    let profile = await new Profile(req.body)
+
+    profile.save(error => {
+        res.status(500).send({message: 'Internal error'})
+        console.log(error);
+    })
 
     res.status(201).send(profile);
 }
