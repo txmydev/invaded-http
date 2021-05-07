@@ -14,7 +14,7 @@ const rank = require('../model/rank');
 })*/
 
 app.post('/', async (req, res) => {
-    let ranks = await rank.find(req.body);
+    let ranks = await rank.find({ "name" : `${req.body.name}`, "priority" : `${req.body.priority}`});
 
     if(!ranks.length) create(req, res);
     else update(ranks[0], req, res);

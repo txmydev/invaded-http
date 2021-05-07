@@ -15,7 +15,7 @@ async function create(req, res) {
 }
 
 app.post('/', async (req, res) => {
-    let found = await Profile.find(req.body);
+    let found = await Profile.find({"uuid": `${req.body.uuid}`, "name": `${req.body.name}`});
 
     if (!found.length) create(req, res);
     else update(found[0], req, res);
