@@ -6,6 +6,11 @@ const scheme = new mongoose.Schema({
         required: true
     },
 
+    name: {
+        type: String,
+        required: true
+    },
+
     rank: {
         type: String,
         required: true
