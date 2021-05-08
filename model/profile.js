@@ -21,6 +21,11 @@ const scheme = new mongoose.Schema({
         default: false
     },
 
+    spaceBetweenRank: {
+        type: Boolean,
+        default: false
+    },
+
     italic: {
         type: Boolean,
         default: false
