@@ -38,4 +38,12 @@ app.get('/', (req, res) => {
         });
 })
 
+app.delete('/', (req, res) => {
+    let profiles = Profile.find(req.query);
+    if(!profiles.length) return res.status(204).send({message: 'Could not found any profiles with that values.'})
+
+    profiles.forEach(profile => profile.remove());
+    res.status(200).send(profiles);
+})
+
 module.exports = app;
