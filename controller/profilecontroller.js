@@ -28,8 +28,6 @@ async function update(found, req, res) {
     return res.status(200).send(profile);
 }
 
-
-
 app.get('/', (req, res) => {
     Profile.find(req.query)
         .then(found => {
@@ -38,11 +36,11 @@ app.get('/', (req, res) => {
         });
 })
 
-app.delete('/', (req, res) => {
-    let profiles = Profile.find(req.query);
+app.delete('/', async (req, res) => {
+    let profiles = await Profile.find(req.query);
     if(!profiles.length) return res.status(204).send({message: 'Could not found any profiles with that values.'})
 
-    profiles.forEach(profile => profile.remove());
+    await profiles.forEach(profile => profile.remove());
     res.status(200).send(profiles);
 })
 

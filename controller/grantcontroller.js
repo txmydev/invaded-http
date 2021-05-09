@@ -14,7 +14,7 @@ app.post('/', async (req, res) => {
 })
 
 app.delete('/', async (req, res) => {
-    let grants = await Grant.find(req.body);
+    let grants = await Grant.find(req.query);
     if(!grants.length)  return res.status(404).send({message: 'Not found.'});
 
     remove(grants, req, res);
