@@ -54,6 +54,11 @@ const scheme = new mongoose.Schema({
     prefixes: {
         type: Array,
         default: []
+    },
+
+    activePrefix: {
+        type: String,
+        default: "none"
     }
 });
 
