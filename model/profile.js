@@ -49,6 +49,11 @@ const scheme = new mongoose.Schema({
     allowDisguise: {
         type: Boolean,
         default: false
+    },
+
+    prefixes: {
+        type: Array,
+        default: []
     }
 });
 
