@@ -17,4 +17,4 @@ const scheme = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('prefixs', scheme)
+module.exports = mongoose.model('trails', scheme)

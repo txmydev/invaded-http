@@ -59,6 +59,11 @@ const scheme = new mongoose.Schema({
     activePrefix: {
         type: String,
         default: "none"
+    },
+
+    coins: {
+        type: Number,
+        default: 0
     }
 });
 
