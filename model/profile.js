@@ -51,12 +51,17 @@ const scheme = new mongoose.Schema({
         default: false
     },
 
-    prefixes: {
+    tags: {
         type: Array,
         default: []
     },
 
     activePrefix: {
+        type: String,
+        default: "none"
+    },
+
+    activeSuffix: {
         type: String,
         default: "none"
     },

@@ -14,7 +14,12 @@ const scheme = new mongoose.Schema({
     price: {
         type: Number,
         default: 0
+    },
+
+    suffix: {
+        type: Boolean,
+        default: false
     }
 })
 
-module.exports = mongoose.model('trails', scheme)
+module.exports = mongoose.model('tags', scheme)

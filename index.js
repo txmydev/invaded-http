@@ -18,14 +18,14 @@ const rankCtrl = require('./controller/rankcontroller');
 const punishmentCtrl = require('./controller/punishmentcontroller');
 const activePunishmentCtrl = require('./controller/activepunishmentctrl');
 const grantctrl = require('./controller/grantcontroller');
-const prefixctrl= require('./controller/prefixcontroller')
+const tagsctrl= require('./controller/tagscontroller')
 
 express.use('/profiles', profileCtrl);
 express.use('/ranks', rankCtrl);
 express.use('/punishments', punishmentCtrl);
 express.use('/activePunishments', activePunishmentCtrl);
 express.use('/grants', grantctrl);
-express.use('/prefixs', prefixctrl)
+express.use('/tags', tagsctrl)
 
 express.listen(process.env.PORT, () => console.log(`Listening in port ${process.env.PORT}`))
 
