@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const scheme = new mongoose.Schema({
     type: {
         type: String,
-        required: true
+        default: "NONE"
     },
 
     punishedAt: {
         type: Number,
-        required: true
+        default: 0
     },
 
     cheaterUuid: {
@@ -23,7 +23,7 @@ const scheme = new mongoose.Schema({
 
     staffName: {
         type: String,
-        required: true
+        default: ""
     },
 
     reason: {

@@ -13,6 +13,24 @@ const rank = require('../model/rank');
         )
 })*/
 
+app.post('/all', async (req, res) => {
+    if(!Array.isArray(req.body)) return res.status(400).send({message: 'This uses an array.'})
+
+    for (const eachRank of req.body) {
+        console.log(eachRank)
+        let nrank = await new rank(eachRank)
+
+        await nrank.save(error => {
+            if(error){
+                console.log(error);
+                res.status(500).send({message: 'Internal error'});
+            }
+        })
+    }
+
+    res.status(201).send(req.body)
+})
+
 app.post('/', async (req, res) => {
     let ranks = await rank.find({ "name" : `${req.body.name}`, "priority" : `${req.body.priority}`});
 

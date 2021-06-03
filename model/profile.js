@@ -69,6 +69,16 @@ const scheme = new mongoose.Schema({
     coins: {
         type: Number,
         default: 0
+    },
+
+    activeTrail: {
+        type: String,
+        default: "none"
+    },
+
+    trails: {
+        type: Array,
+        default: []
     }
 });
 

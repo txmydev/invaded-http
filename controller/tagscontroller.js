@@ -13,7 +13,7 @@ app.post('/', async (req, res) => {
     let tags = await Tag.find({ "id" : `${req.body.id}`});
 
     if(!tags.length) create(req, res);
-    else update(prefixs[0], req, res);
+    else update(tags[0], req, res);
 })
 
 app.delete('/', async (req, res) => {
@@ -26,7 +26,7 @@ app.delete('/', async (req, res) => {
 app.delete('/deleteall', async (req, res) => {
     let tags = await Tag.find();
 
-    await tags.forEach(prefix => prefix.remove(err => {
+    await tags.forEach(tag => tag.remove(err => {
         if(err) {
             console.log(err)
             res.status(500).send({message: 'not ok'})
